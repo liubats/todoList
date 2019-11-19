@@ -27,21 +27,19 @@ class ToDoList extends Component {
             return item.label.startsWith(this.props.searchText)
         });
 
-        console.log(filtered);
-
         return (
             <List 
                 dataSource={filtered}
                 renderItem={item => (
                     <List.Item key={item.id}
-                               id={Date.now}>
+                               id={item.id}>
                         
                         <List.Item.Meta title={<Text delete={item.done}
                                         >{item.label}</Text>} />
 
                             <Checkbox onChange={() => this.props.dispatch({type: 'ITEM_DONE_TOGGLE',
                                                                 done: !item.done,
-                                                                id:this.props.id})} />
+                                                                id:item.id})} />
                     </List.Item>
                 )}
             />

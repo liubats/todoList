@@ -17,13 +17,18 @@ const reducer = (state = {items:[{label:'Drink',done:true, id:'1'},{label:'Read'
             };
         }
         case 'ITEM_DONE_TOGGLE': {
-            const searchItemIndex = state.items.find((item) => {
+            const searchItemIndex = state.items.findIndex((item) => {
                 return item.id === action.id;
             });
             const searchItem = state.items[searchItemIndex];
             const newItem = { ...searchItem, done: action.done };
+            let leftPart=state.items.slice(0, searchItemIndex);
+            let rightPart=state.items.slice(searchItemIndex+1);
+            const newItems = [...leftPart, {...newItem}, ...rightPart];
+
             return { 
                 ...state,
+                items:newItems
             };
                 
         }
