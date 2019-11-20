@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, Checkbox, Typography } from 'antd';
+import { List, Checkbox, Typography, Button } from 'antd';
 import "antd/dist/antd.css";
 import { connect } from 'react-redux';
 
@@ -37,9 +37,16 @@ class ToDoList extends Component {
                         <List.Item.Meta title={<Text delete={item.done}
                                         >{item.label}</Text>} />
 
-                            <Checkbox onChange={() => this.props.dispatch({type: 'ITEM_DONE_TOGGLE',
+                            <Checkbox 
+                                    style={{marginRight:10+'px'}}
+                                    onChange={() => this.props.dispatch({type: 'ITEM_DONE_TOGGLE',
                                                                 done: !item.done,
                                                                 id:item.id})} />
+                            <Button type="dashed"
+                                    onClick={() => this.props.dispatch({type: 'DELETE_ITEM',
+                                                                        id: item.id})
+
+                                    }>Remove</Button>
                     </List.Item>
                 )}
             />

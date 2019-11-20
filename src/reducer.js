@@ -43,13 +43,27 @@ const reducer = (state = {
             {
                 return {
                     ...state,
-                    items: [...state.items, {
-                        label: action.label,
-                        id: action.id
-                    }],
+                    items: [...state.items, {label: action.label,
+                                         done: false,
+                                         id: action.id,}],
                     newItemLabel: '',
                 };
             }
+        case 'DELETE_ITEM':
+            {
+                const searchItemIndex = state.items.findIndex((item) => {
+                    return item.id === action.id;
+                });
+                let leftPart = state.items.slice(0, searchItemIndex);
+                let rightPart = state.items.slice(searchItemIndex + 1);
+                const newItems = [...leftPart, ...rightPart];
+
+                return {
+                    ...state,
+                    items: newItems,
+                }
+            };
+
         default:
             {
                 return state;
@@ -57,5 +71,6 @@ const reducer = (state = {
     }
 }
 
-///asdadasd
-export default reducer;
+
+export
+default reducer;

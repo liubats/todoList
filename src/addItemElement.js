@@ -23,6 +23,7 @@ class AddItemElements extends Component {
                                          }> +
                                   </Button>
                     </Col> 
+                    
                 </Row>
 
         )
